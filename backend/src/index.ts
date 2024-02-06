@@ -2,7 +2,7 @@ import express, { Request , Response } from "express"
 import { SampleProducts } from "./data"
 
 const app = express ()
-app.get("/api/products",(req:Request, res: Response)=>{
+app.get("/api/products",( req:Request, res: Response)=>{
     res.json(SampleProducts)
 })
 const Port = 4000
