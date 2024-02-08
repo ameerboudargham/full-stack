@@ -1,15 +1,26 @@
-import express, { Request , Response } from "express"
-import { SampleProducts } from "./data"
-import cors from "cors"
+import cors from 'cors';
+import express, { Request, Response } from 'express';
+import { SampleProducts } from './data';
 
-const app = express ()
-app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
-    next();
+const app = express();
+
+app.use(
+  cors({
+    credentials: true,
+    origin: ['http://localhost:5173'],
+  })
+);
+
+app.get('/api/products', (req: Request, res: Response) => {
+  res.json(SampleProducts);
 });
-app.get("/api/products",( req:Request, res: Response)=>{
-    res.json(SampleProducts)
-})
-app.listen(4000, () => {
-    console.log('Server is running on port 4000');
+
+app.get('/api/products/:slug', (req: Request, res: Response) => {
+  res.json(SampleProducts.find((x: { slug: string; }) => x.slug === req.params.slug));
+});
+
+const PORT = 4000;
+
+app.listen(PORT, () => {
+  console.log(`server started at http://localhost:${PORT}`);
 });
