@@ -4,8 +4,9 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import ProductItem from '../components/ProductItem';
 import { useGetProductsQuery } from '../hooks/productHooks';
-import { ApiError } from '../types/ApiError';
 import { getError } from '../utils';
+import { ApiError } from '../types/ApiError';
+
 
 export default function HomePage() {
   const { data: products, isLoading, error } = useGetProductsQuery();
@@ -13,11 +14,11 @@ export default function HomePage() {
   return isLoading ? (
     <LoadingBox />
   ) : error ? (
-    <MessageBox variant="danger">{getError(error as unknown as ApiError)}</MessageBox>
+    <MessageBox variant="danger">{getError(error as unknown  as ApiError )}</MessageBox>
   ) : (
     <Row>
       <Helmet>
-        <title>TS Amazona</title>
+        <title>Mirona</title>
       </Helmet>
       {products!.map((product) => (
         <Col key={product.slug} sm={6} md={4} lg={3}>
