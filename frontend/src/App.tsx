@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { SampleProducts } from './data';
-import { Col, Container, Nav, Navbar, Row } from 'react-bootstrap';
+import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
+import '@fortawesome/fontawesome-free/css/all.min.css';
+
 
 function App() {
   // eslint-disable-next-line no-empty-pattern
@@ -22,15 +23,13 @@ function App() {
       </header>
       <main>
         <Container className='mt-3'>
-      <Outlet />
+          <Outlet />
         </Container>
-       
       </main>
       <footer>
         <div className="text-center">
-        All Rights Reserved
+          All Rights Reserved
         </div>
-        
       </footer>
     </div>
   );

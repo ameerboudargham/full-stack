@@ -2,6 +2,7 @@ import { Product } from "./types/Product";
 
 export const SampleProducts: Product[] = [
     {
+        id: '1', // Add unique IDs for each product
         name: 'Coffee Table',
         slug: "Coffee Table",
         image: "public\\images\\coffee table.jpg",
@@ -14,6 +15,7 @@ export const SampleProducts: Product[] = [
         numReviews: 10,
     },
     {
+        id: '2',
         name: 'Conference Table',
         slug: "Conference Table",
         image: "public\\images\\conference table.jpg",
@@ -26,6 +28,7 @@ export const SampleProducts: Product[] = [
         numReviews: 15,
     },
     {
+        id: '3',
         name: 'Dinning Table',
         slug: "Dining Table",
         image: "public\\images\\dinning table.jpg",
@@ -35,6 +38,19 @@ export const SampleProducts: Product[] = [
         CountInStock: 6,
         description: "high quality",
         rating: 4.7,
+        numReviews: 12,
+    },
+    {
+        id: '4',
+        name: 'Outdoor Table',
+        slug: "Outdoor Table",
+        image: "public\\images\\outdoortable.jpeg",
+        category: "Tables",
+        brand: "Swedish",
+        price: 160,
+        CountInStock: 9,
+        description: "high quality",
+        rating: 3.9,
         numReviews: 12,
     },
 ];
