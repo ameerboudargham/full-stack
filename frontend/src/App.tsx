@@ -1,12 +1,19 @@
-import { useState } from 'react';
-import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useContext, useEffect } from 'react';
+import { Button, Container, Nav, Navbar } from 'react-bootstrap';
 import { Outlet } from 'react-router-dom';
 import '@fortawesome/fontawesome-free/css/all.min.css';
-
+import { Store } from './store';
 
 function App() {
-  // eslint-disable-next-line no-empty-pattern
-  const [] = useState(0);
+  const { state: { mode }, dispatch } = useContext(Store);
+
+  useEffect(() => {
+    document.body.setAttribute("data-bs-theme", mode);
+  }, [mode]);
+
+  const switchModeHandler = () => {
+    dispatch({ type: "SWITCH_MODE" });
+  };
 
   return (
     <div className="d-flex flex-column vh-100">
@@ -16,8 +23,12 @@ function App() {
             <Navbar.Brand>mirona</Navbar.Brand>
           </Container>
           <Nav>
-            <a href='/cart' className='nav-link '>Cart</a>
-            <a href='/signin' className='nav-link'>Sign In</a>
+            <Button variant={mode} onClick={switchModeHandler}>
+              <i className={mode === 'light' ? 'fa fa-sun' : 'fa fa-moon'}></i>
+            </Button>
+            <a href='/cart' className='nav-link'> Cart </a>
+            <a href='/signin' className='nav-link'> Sign In </a>
+            
           </Nav>
         </Navbar>
       </header>

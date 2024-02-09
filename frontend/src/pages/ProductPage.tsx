@@ -1,7 +1,7 @@
 
 import { useParams } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
-import { Row, Col, Button, Card, ListGroup } from 'react-bootstrap';
+import { Row, Col, ListGroup, Badge } from 'react-bootstrap';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { useGetProductDetailsBySlugQuery } from '../hooks/productHooks';
@@ -14,9 +14,6 @@ export default function ProductPage() {
   const { data: product, isLoading, error } = useGetProductDetailsBySlugQuery(slug || '');
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  function setSelectedImage(_x: string): void {
-    throw new Error('Function not implemented.');
-  }
 
   if (isLoading) {
     return <LoadingBox />;
@@ -57,22 +54,21 @@ export default function ProductPage() {
             </ListGroup.Item>
             <ListGroup.Item>Price : ${product.price}</ListGroup.Item>
             <ListGroup.Item>
-              <Row xs={1} md={2} className="g-2">
-                {[].map((x) => (
-                  <Col key={x}>
-                    <Card>
-                      <Button
-                        className="thumbnail"
-                        type="button"
-                        variant="light"
-                        onClick={() => setSelectedImage(x)}
-                      >
-                        <Card.Img variant="top" src={x} alt="product" />
-                      </Button>
-                    </Card>
-                  </Col>
-                ))}
-              </Row>
+            <Row>
+                    <Col>Status:</Col>
+                    <Col>
+                      {product!.CountInStock > 0 ? (
+                        <Badge bg="success">In Stock</Badge>
+                      ) : (
+                        <Badge bg="danger">Unavailable</Badge>
+                      )}
+                    </Col>
+                  </Row>
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <div className='d-grid'>
+                <button about="primary">Add to Cart </button>
+              </div>
             </ListGroup.Item>
             <ListGroup.Item>
               Description:
