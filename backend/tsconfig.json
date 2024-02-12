@@ -6,7 +6,9 @@
       "lib": ["esnext"],
       "esModuleInterop": true,
       "allowSyntheticDefaultImports": true,
-      "strict": true
+      "strict": true,
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true
     }
   }
   

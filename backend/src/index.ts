@@ -1,6 +1,23 @@
 import cors from 'cors';
-import express, { Request, Response } from 'express';
-import { SampleProducts } from './data';
+import express  from 'express';
+import dotenv from "dotenv"
+import mongoose from 'mongoose';
+import { productRouter } from './routers/productRouter';
+import seedRouter from './routers/seedRouter';
+
+dotenv.config()
+const MONGODB_URL =
+process.env.MONGODB_url || "mongodb://localhost/tsmironadb"
+mongoose.set("strictQuery",true)
+
+.connect(MONGODB_URL)
+.then(()=>{
+    console.log("connected to mongodb")
+
+})
+.catch(()=> {
+    console.log("error mongodb")
+})
 
 const app = express();
 
@@ -11,13 +28,9 @@ app.use(
   })
 );
 
-app.get('/api/products', (req: Request, res: Response) => {
-  res.json(SampleProducts);
-});
+app.use("/api/products", productRouter)
+app.use("/api/seed", seedRouter)
 
-app.get('/api/products/:slug', (req: Request, res: Response) => {
-  res.json(SampleProducts.find((x: { slug: string; }) => x.slug === req.params.slug));
-});
 
 const PORT = 4000;
 

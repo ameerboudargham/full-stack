@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="d-flex flex-column vh-100">
       <header>
-        <Navbar bg='dark' variant='dark' expand="lg">
+        <Navbar expand="lg">
           <Container>
             <Navbar.Brand>mirona</Navbar.Brand>
           </Container>
